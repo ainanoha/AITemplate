@@ -28,23 +28,7 @@ FLAG = ""
 
 
 def _detect_cuda():
-    try:
-        proc = Popen(
-            ["nvidia-smi", "--query-gpu=gpu_name", "--format=csv"],
-            stdout=PIPE,
-            stderr=PIPE,
-        )
-        stdout, stderr = proc.communicate()
-        stdout = stdout.decode("utf-8")
-        if "A100" in stdout or "RTX 30" in stdout or "A30" in stdout:
-            return "80"
-        if "V100" in stdout:
-            return "70"
-        if "T4" in stdout:
-            return "75"
-        return None
-    except Exception:
-        return None
+    return "80"
 
 
 def _detect_rocm():
